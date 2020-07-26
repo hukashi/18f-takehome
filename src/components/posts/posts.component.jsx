@@ -8,8 +8,13 @@ export const Posts = (props) => {
   console.log(props);
   return (
     <div className="posts">
-      {props.posts.map((post) => (
-        <Post key={post.id} post={post} onPostUpdate={props.onPostUpdate} />
+      {props.posts.map((post, index) => (
+        <Post
+          key={post.id}
+          index={index}
+          post={post}
+          onPostUpdate={props.onPostUpdate}
+        />
       ))}
     </div>
   );

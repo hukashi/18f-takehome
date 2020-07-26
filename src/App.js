@@ -27,10 +27,12 @@ class App extends React.Component {
       });
   }
 
-  _updatePost(post) {
-    console.log("the updatePost Function just fired!!!");
-    console.log(post);
-  }
+  updatePost = (index, post) => {
+    console.log("the updatePost Function just fired!!!", this.state);
+    let { posts } = this.state;
+    posts[index] = post;
+    this.setState({ posts });
+  };
 
   render() {
     const { posts, searchField } = this.state;
@@ -46,7 +48,7 @@ class App extends React.Component {
           }}
         />
         <h1 className="title">POSTS</h1>
-        <Posts posts={filteredPosts} onPostUpdate={this._updatePost} />
+        <Posts posts={filteredPosts} onPostUpdate={this.updatePost} />
       </div>
     );
   }
