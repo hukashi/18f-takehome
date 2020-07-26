@@ -14,11 +14,19 @@ export class Post extends React.Component {
       },
     };
   }
+
+  updatePostHandler(e) {
+    e.preventDefault();
+    console.log("updatePostHandler is fired");
+    console.log(e);
+    console.log(e.target.value);
+  }
+
   render() {
     console.log("this is the Post component props");
     console.log(this.props);
     return this.state.isInEditMode ? (
-      this._renderForm()
+      this._renderForm2()
     ) : (
       <div className="post">
         <div>
@@ -49,11 +57,34 @@ export class Post extends React.Component {
             Body: <textarea type="text" placeholder={this.props.post.body} />
           </label>
         </div>
-        <button onClick={this.props.onPostUpdate}>Save</button>
+        <button onClick={() => this.props.onPostUpdate(this.props.post.id)}>
+          Save
+        </button>
+        <button onClick={this.updatePostHandler}>Save2</button>
         <button onClick={() => this.setState({ isInEditMode: false })}>
           Cancel
         </button>
       </div>
+    );
+  }
+  _renderForm2() {
+    return (
+      <form className="edit-form" onSubmit={this.updatePostHandler}>
+        <div className="title-edit">
+          <label>
+            Title: <input type="text" placeholder={this.props.post.title} />
+          </label>
+        </div>
+        <div className="body-edit">
+          <label>
+            Body: <textarea type="text" placeholder={this.props.post.body} />
+          </label>
+        </div>
+        <button type="submit">Save</button>
+        <button onClick={() => this.setState({ isInEditMode: false })}>
+          Cancel
+        </button>
+      </form>
     );
   }
 }

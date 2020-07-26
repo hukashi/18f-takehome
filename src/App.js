@@ -29,6 +29,7 @@ class App extends React.Component {
 
   _updatePost(post) {
     console.log("the updatePost Function just fired!!!");
+    console.log(post);
   }
 
   render() {
