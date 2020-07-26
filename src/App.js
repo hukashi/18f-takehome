@@ -35,7 +35,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <SearchBox
-          placeholder="Search Posts"
+          placeholder="Search Posts by Title"
           handleChange={(e) => {
             this.setState({ searchField: e.target.value });
           }}
