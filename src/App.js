@@ -28,7 +28,6 @@ class App extends React.Component {
   }
 
   updatePost = (index, post) => {
-    console.log("the updatePost Function just fired!!!", this.state);
     let { posts } = this.state;
     posts[index] = post;
     this.setState({ posts });

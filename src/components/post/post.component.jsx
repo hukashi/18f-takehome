@@ -11,18 +11,23 @@ export class Post extends React.Component {
       newPost: {
         title: "",
         body: "",
+        userId: null,
+        id: null,
       },
     };
   }
 
   updatePostHandler = (e) => {
     e.preventDefault();
+    const { newPost } = this.state;
+    const { post } = this.props;
+    newPost.id = post.id;
+    newPost.userId = post.userId;
     this.props.onPostUpdate(this.props.index, this.state.newPost);
     this.setState({ isInEditMode: false });
   };
 
   handlePostChange = (e) => {
-    console.log(e.target);
     const { newPost } = this.state;
     if (e.target.name === "title") {
       newPost.title = e.target.value;
@@ -41,8 +46,6 @@ export class Post extends React.Component {
   };
 
   render() {
-    console.log("this is the Post component props");
-    console.log(this.props);
     return this.state.isInEditMode ? (
       this._renderForm()
     ) : (
