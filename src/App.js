@@ -1,8 +1,11 @@
 import React from "react";
-import "./App.css";
+
+import axios from "axios";
 
 import { Posts } from "./components/posts/posts.component";
 import { SearchBox } from "./components/search-box/search-box.component";
+
+import "./App.css";
 
 class App extends React.Component {
   constructor() {
@@ -14,9 +17,14 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch("https://jsonplaceholder.typicode.com/posts")
-      .then((response) => response.json())
-      .then((posts) => this.setState({ posts: posts }));
+    axios
+      .get("https://jsonplaceholder.typicode.com/posts")
+      .then((response) => {
+        this.setState({ posts: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   render() {
