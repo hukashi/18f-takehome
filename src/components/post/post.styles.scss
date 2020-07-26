@@ -2,7 +2,7 @@
   border: 1px solid black;
   border-radius: 8px;
   margin: 10px;
-  min-height: 100px;
+  min-height: 150px;
   padding: 20px;
   .title-heading,
   .title,
@@ -20,6 +20,15 @@
     text-align: center;
     margin: 0 auto;
     margin-top: 15px;
+    background-color: #008cba;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
   }
 }
 
@@ -27,16 +36,34 @@
   border: 1px solid black;
   border-radius: 8px;
   margin: 10px;
-  min-height: 100px;
+  min-height: 150px;
   padding: 20px;
   .title-edit,
   .body-edit {
     margin: 10px 0;
     input {
-      width: 500px;
+      width: 850px;
     }
     textarea {
-      width: 500px;
+      width: 850px;
     }
+    label {
+      font-weight: bold;
+    }
+  }
+  button {
+    margin: 0 10px;
+    background-color: #4caf50;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+  .cancel-btn {
+    background-color: #f44336;
   }
 }

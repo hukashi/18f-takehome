@@ -67,7 +67,7 @@ export class Post extends React.Component {
       <form className="edit-form" onSubmit={this.updatePostHandler}>
         <div className="title-edit">
           <label>
-            Title:a
+            Title:
             <input
               name="title"
               type="text"
@@ -88,7 +88,10 @@ export class Post extends React.Component {
           </label>
         </div>
         <button type="submit">Submit</button>
-        <button onClick={() => this.setState({ isInEditMode: false })}>
+        <button
+          className="cancel-btn"
+          onClick={() => this.setState({ isInEditMode: false })}
+        >
           Cancel
         </button>
       </form>
