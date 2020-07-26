@@ -1,5 +1,42 @@
 .post {
   border: 1px solid black;
+  border-radius: 8px;
   margin: 10px;
+  min-height: 100px;
   padding: 20px;
+  .title-heading,
+  .title,
+  .body-heading,
+  .body {
+    display: inline;
+    overflow: wrap;
+  }
+  .title-heading,
+  .body-heading {
+    margin-right: 10px;
+  }
+  button {
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 15px;
+  }
+}
+
+.edit-form {
+  border: 1px solid black;
+  border-radius: 8px;
+  margin: 10px;
+  min-height: 100px;
+  padding: 20px;
+  .title-edit,
+  .body-edit {
+    margin: 10px 0;
+    input {
+      width: 500px;
+    }
+    textarea {
+      width: 500px;
+    }
+  }
 }

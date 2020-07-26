@@ -27,6 +27,10 @@ class App extends React.Component {
       });
   }
 
+  _updatePost(post) {
+    console.log("the updatePost Function just fired!!!");
+  }
+
   render() {
     const { posts, searchField } = this.state;
     const filteredPosts = posts.filter((post) =>
@@ -41,7 +45,7 @@ class App extends React.Component {
           }}
         />
         <h1 className="title">POSTS</h1>
-        <Posts posts={filteredPosts} />
+        <Posts posts={filteredPosts} onPostUpdate={this._updatePost} />
       </div>
     );
   }
