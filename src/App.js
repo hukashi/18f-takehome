@@ -1,51 +1,42 @@
 import React from "react";
 import { connect } from "react-redux";
-import axios from "axios";
-import { updatePost } from ".. /redux";
+import { bindActionCreators } from "redux";
 
-import { store } from "./redux/store";
 import { Posts } from "./components/posts/posts.component";
 import { SearchBox } from "./components/search-box/search-box.component";
+import { fetchPosts } from "./redux/post/postActions";
 
 import "./App.css";
 
-function App (props) {
+class App extends React.Component {
+  constructor(props) {
+    super(props);
 
-  // componentDidMount() {
-  //   axios
-  //     .get("https://jsonplaceholder.typicode.com/posts")
-  //     .then((response) => {
-  //       this.setState({ posts: response.data });
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }
+    this.state = {
+      searchField: "",
+    };
+  }
 
-  // updatePost = (index, post) => {
-  //   let { posts } = this.state;
-  //   posts[index] = post;
-  //   this.setState({ posts });
-  // };
+  componentDidMount() {
+    this.props.fetchPosts();
+  }
 
   render() {
-    // const { posts, searchField } = this.state;
-    const filteredPosts = props.posts.filter((post) =>
+    const { searchField } = this.state;
+    const filteredPosts = this.props.posts.filter((post) =>
       post.title.toLowerCase().includes(searchField.toLowerCase())
     );
     return (
-      <Provider store={store}>
-        <div className="App">
-          <SearchBox
-            placeholder="Search Posts by Title"
-            handleChange={(e) => {
-              this.setState({ searchField: e.target.value });
-            }}
-          />
-          <h1 className="title">POSTS</h1>
-          <Posts posts={filteredPosts} onPostUpdate={props.updatePost} />
-        </div>
-      </Provider>
+      <div className="App">
+        <SearchBox
+          placeholder="Search Posts by Title"
+          handleChange={(e) => {
+            this.setState({ searchField: e.target.value });
+          }}
+        />
+        <h1 className="title">POSTS</h1>
+        <Posts posts={filteredPosts} />
+      </div>
     );
   }
 }
@@ -53,13 +44,12 @@ function App (props) {
 const mapStateToProps = (state) => {
   return {
     posts: state.posts,
-    searchField: state.searchField,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updatePost: () => dispatch(updatePost()),
+    fetchPosts: bindActionCreators(fetchPosts, dispatch),
   };
 };
 

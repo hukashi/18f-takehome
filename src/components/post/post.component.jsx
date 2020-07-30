@@ -1,8 +1,12 @@
 import React from "react";
+import { connect } from "react-redux";
+
+import { updatePost } from "../../redux/post/postActions";
+import { bindActionCreators } from "redux";
 
 import "./post.styles.scss";
 
-export class Post extends React.Component {
+class Post extends React.Component {
   constructor(props) {
     super(props);
 
@@ -23,7 +27,7 @@ export class Post extends React.Component {
     const { post } = this.props;
     newPost.id = post.id;
     newPost.userId = post.userId;
-    this.props.onPostUpdate(this.props.index, this.state.newPost);
+    this.props.updatePost(this.state.newPost);
     this.setState({ isInEditMode: false });
   };
 
@@ -98,3 +102,17 @@ export class Post extends React.Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    posts: state.posts,
+    searchField: state.searchField,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updatePost: bindActionCreators(updatePost, dispatch),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Post);
