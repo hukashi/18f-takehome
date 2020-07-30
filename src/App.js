@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 
 import { Posts } from "./components/posts/posts.component";
 import { SearchBox } from "./components/search-box/search-box.component";
@@ -49,7 +48,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchPosts: bindActionCreators(fetchPosts, dispatch),
+    fetchPosts: () => dispatch(fetchPosts()),
   };
 };
 
